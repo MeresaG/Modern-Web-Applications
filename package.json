@@ -6,7 +6,6 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node app",
     "dev": "cross-env NODE_ENV=development node app"
-
   },
   "repository": {
     "type": "git",
@@ -19,7 +18,7 @@
   },
   "homepage": "https://github.com/MeresaG/DocumentaryBook#readme",
   "dependencies": {
-    "connect-mongo": "^4.6.0",
+    "connect-mongo": "^3.2.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-handlebars": "^6.0.3",

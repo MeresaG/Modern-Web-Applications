@@ -5,9 +5,12 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
+const { default: mongoose } = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
 
 const connectDB = require('./config/db');
 const passportConfig = require('./config/passport');
+
 
 
 //Load config
@@ -15,7 +18,6 @@ dotenv.config({ path : './config/config.env' });
 
 //Passport config
 passportConfig(passport);
-
 connectDB();
 
 const app = express();
@@ -32,7 +34,8 @@ app.set('view engine', 'hbs');
 app.use(session({
     secret: 'documentary app',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new MongoStore({mongooseConnection: mongoose.connection})
   }))
 
 //passport Middlewar
