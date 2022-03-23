@@ -18,3 +18,7 @@ p {
   margin-right: 25px;
   /* width: 70px; */
 }
+
+.img-small {
+  width: 180px;
+}
