@@ -21,6 +21,12 @@ passportConfig(passport);
 connectDB();
 
 const app = express();
+
+//Body Parser
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+
+
 //Logging
 if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
@@ -51,6 +57,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Routes
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
+app.use('/documentaries', require('./routes/documentaries'));
 
 const PORT = process.env.PORT || 3000;
 

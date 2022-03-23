@@ -23,7 +23,7 @@ router.get('/dashboard', ensureAuth, async (req, res) => {
         const documentaries = await Documentary.find({user : req.user.id}).lean()
         res.render('dashboard', {
             name : req.user.firstName,
-            documentaries
+            documentaries: documentaries
         });
 
     } catch (error) {
