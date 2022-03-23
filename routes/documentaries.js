@@ -51,7 +51,31 @@ router.get('/add', ensureAuth, (req, res) => {
     }
 })
 
+/**
+ * @desc show single story
+ * @route GET /documentaries/:id
+ */
 
+ router.get('/:id', ensureAuth, async (req, res) => {
+    try {
+        
+        let documentary = await Documentary.findById(req.params.id)
+                            .populate('user')
+                            .lean()
+        if(!documentary) {
+            return res.render('error/404');
+        }
+
+        res.render('documentaries/show', {
+            documentary : documentary
+        })
+
+
+    } catch (error) {
+        console.error(error);
+        return res.render('error/404')
+    }
+})
 
 /**
  * @desc show edit page
@@ -111,6 +135,21 @@ router.get('/add', ensureAuth, (req, res) => {
     }
 
 
+})
+
+/**
+ * @desc Delete Documentary
+ * @route delete /documentaries/:id
+ */
+
+ router.delete('/:id', ensureAuth, async (req, res) => {
+    try {
+        await Documentary.remove({ _id : req.params.id })
+        res.redirect('/dashboard')
+    } catch (error) {
+        console.error(error);
+        return res.render('error/500')
+    }
 })
 
 
