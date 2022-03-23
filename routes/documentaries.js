@@ -27,7 +27,7 @@ router.get('/add', ensureAuth, (req, res) => {
         
     } catch (error) {
         console.log(error);
-        req.render('error/500');
+        res.render('error/500');
     }
 })
 
@@ -78,6 +78,38 @@ router.get('/add', ensureAuth, (req, res) => {
         console.log(error)
         res.render('error/500')
     }
+
+})
+
+/**
+ * @desc update documentary
+ * @route GET /documentaries/:id
+ */
+
+ router.put('/:id', ensureAuth, async (req, res) => {
+    
+    try {
+        
+        let documentary = await Documentary.findById(req.params.id).lean();
+        if(!documentary) {
+            res.render('error/404')
+        }
+
+        if(documentary.user != req.user.id) {
+            res.redirect('/documentaries')
+        }
+        else {
+            documentary = await Documentary.findByIdAndUpdate({_id : req.params.id}, req.body, {
+                new: true,
+                runValidators: true,
+            })
+            res.redirect('/dashboard')
+        }
+
+    } catch (error) {
+        res.render('error/500')
+    }
+
 
 })
 
