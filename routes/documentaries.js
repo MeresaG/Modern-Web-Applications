@@ -153,4 +153,23 @@ router.get('/add', ensureAuth, (req, res) => {
 })
 
 
+/**
+ * @desc User Stories
+ * @route GET /documentaries/user/:userId
+ */
+
+ router.get('/user/:userId', ensureAuth, async (req, res) => {
+    try {
+        const documentaries = await Documentary.find({user: req.params.userId, status:'public'})
+                                .populate('user')
+                                .lean()
+        res.render('documentaries/index', {
+            documentaries : documentaries
+        })
+    } catch (error) {
+        console.error(error)
+        return res.render('error/500')
+    }
+})
+
 module.exports = router;
