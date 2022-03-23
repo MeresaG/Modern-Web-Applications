@@ -1,4 +1,5 @@
 const express = require('express');
+const { status } = require('express/lib/response');
 const router = express.Router();
 const {ensureAuth} = require('../middleware/auth');
 const Documentary = require('../models/Documentary');
@@ -27,6 +28,26 @@ router.get('/add', ensureAuth, (req, res) => {
     } catch (error) {
         console.log(error);
         req.render('error/500');
+    }
+})
+
+
+/**
+ * @desc show all documentaries
+ * @route GET /documentaries
+ */
+
+ router.get('/', ensureAuth, async (req, res) => {
+    try {
+        const documentaries = await Documentary.find({status:'public'})
+            .populate('user')
+            .sort({createdAt: 'desc'}).lean()
+        res.render('documentaries/index', {
+            documentaries: documentaries,
+        })
+    } catch (error) {
+        console.error(error)
+        res.send('error/500')
     }
 })
 
