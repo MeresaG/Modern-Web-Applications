@@ -52,4 +52,34 @@ router.get('/add', ensureAuth, (req, res) => {
 })
 
 
+
+/**
+ * @desc show edit page
+ * @route GET /documentaries/edit/:id
+ */
+
+ router.get('/edit/:id', ensureAuth, async (req, res) => {
+    
+    try {
+        const documentary = await Documentary.findOne({_id : req.params.id,}).lean()
+        if(!documentary) {
+            return res.render('error/404')
+        }
+
+        if(documentary.user != req.user.id) {
+            res.redirect('/documentaries')
+        }
+        else {
+            res.render('documentaries/edit', {
+                documentary:documentary
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        res.render('error/500')
+    }
+
+})
+
+
 module.exports = router;
