@@ -41,6 +41,13 @@ build/Release
 node_modules/
 jspm_packages/
 
+#Dependency directories of sub folders
+
+lesson-1/node_modules/
+lesson-*/*/node_modules/
+lesson-*/*/package-lock.json
+
+
 # TypeScript v1 declaration files
 typings/
 
