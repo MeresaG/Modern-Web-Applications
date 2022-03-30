@@ -46,6 +46,8 @@ jspm_packages/
 lesson-1/node_modules/
 lesson-*/*/node_modules/
 lesson-*/*/package-lock.json
+lesson-*/node_modules/
+lesson-*/package-lock.json
 
 
 # TypeScript v1 declaration files
