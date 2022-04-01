@@ -8,8 +8,7 @@ router.route('/games')
         .post(gameController.addOne);
 
 router.route('/games/:gameId')
-        .get((req, res) => {
-            gameController.getOne(req, res) 
-        });
+        .get(gameController.getOne)
+        .delete(gameController.deleteOne);
 
 module.exports = router;

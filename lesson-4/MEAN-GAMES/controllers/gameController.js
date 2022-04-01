@@ -77,3 +77,19 @@ module.exports.getOne = (req, res) => {
         return res.status(200).json(games);
         });
 }
+
+module.exports.deleteOne = (req, res) => {
+    console.log("Get One Controller called");
+    const db= dbConnection.get();
+    console.log("db", db);
+    const gameCollection= db.collection("games");
+    const gameId= req.params.gameId;
+    gameCollection.deleteOne({_id : ObjectId(gameId)},function(err, response) {
+        if(err) {
+            return res.status(500).json({error : err})
+
+        }
+        console.log("Deleted game", gameId);
+        return res.status(200).json(response);
+        });
+}
