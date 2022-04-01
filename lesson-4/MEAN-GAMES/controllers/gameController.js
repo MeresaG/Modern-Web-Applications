@@ -1,8 +1,11 @@
 const gameData = require('../data/games.json');
+const dbConnection= require("../data/dbConnection");
+
 
 module.exports.getAll = (req, res) => {
     console.log("Get All Controller called");
-
+    const db= dbConnection.get();
+    console.log("db", db);
     let offset = 0;
     let count = 5;
     if(req.query && req.query.offset) {
