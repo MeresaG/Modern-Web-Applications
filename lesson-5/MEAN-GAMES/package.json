@@ -1,0 +1,34 @@
+{
+  "name": "mean-games",
+  "version": "1.0.0",
+  "description": "This is a simple MEAN GAMES APP",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app",
+    "dev": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeresaG/MEAN-GAMES.git"
+  },
+  "keywords": [
+    "NODE",
+    "EXPRESS",
+    "MONGODB",
+    "BOOTSTRAP",
+    "JQUERY"
+  ],
+  "author": "Meresa G",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MeresaG/MEAN-GAMES/issues"
+  },
+  "homepage": "https://github.com/MeresaG/MEAN-GAMES#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.9",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
+}
