@@ -1,5 +1,5 @@
 const dbConnection= require("../data/dbConnection");
-
+const ObjectId= require("mongodb").ObjectId;
 
 module.exports.getAll = (req, res) => {
     console.log("Get All Controller called");
@@ -62,6 +62,18 @@ module.exports.addOne = (req, res) => {
 }
 
 module.exports.getOne = (req, res) => {
-    console.log("Get All Controller called");
-    return res.status(200).json(gameData[req.params.gameIndex]);
+    console.log("Get One Controller called");
+    const db= dbConnection.get();
+    console.log("db", db);
+    const gameCollection= db.collection("games");
+    const gameId= req.params.gameId;
+    gameCollection.findOne({_id : ObjectId(gameId)},function(err, games) {
+        if(err) {
+            return res.status(500).json({error : err})
+
+        }
+        console.log("Found game", games);
+        console.log("Number of collections", games.length)
+        return res.status(200).json(games);
+        });
 }

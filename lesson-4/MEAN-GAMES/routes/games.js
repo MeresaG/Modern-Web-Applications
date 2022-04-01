@@ -7,7 +7,7 @@ router.route('/games')
         .get(gameController.getAll)
         .post(gameController.addOne);
 
-router.route('/games/:gameIndex')
+router.route('/games/:gameId')
         .get((req, res) => {
             gameController.getOne(req, res) 
         });
