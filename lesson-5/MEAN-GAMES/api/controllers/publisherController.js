@@ -9,7 +9,7 @@ const getOne = (req, res) => {
 
     Game.findById(gameId).select('publisher').exec(function(err, game){
         console.log("Game Found", game);
-        res.status(200).json(game)
+        res.status(200).json(game.publisher)
     })
 } 
 

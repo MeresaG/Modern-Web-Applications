@@ -1,5 +1,27 @@
 const mongoose = require('mongoose');
 
+const reviewSchema= new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    rating: {
+        type: Number,
+        min: 1,
+        max: 5,
+        required: true
+    },
+    review: {
+        type: String,
+        required: true
+    },
+    postDate: {
+        type: Date,
+        "default": Date.Now
+    }
+});
+
+
 const PublisherSchema = mongoose.Schema({
     name : {
         type: String,
@@ -42,6 +64,7 @@ const GameSchema = mongoose.Schema({
 
     minAge : Number,
     publisher : PublisherSchema,
+    review:[reviewSchema],
     designers : [String]
 
 });
