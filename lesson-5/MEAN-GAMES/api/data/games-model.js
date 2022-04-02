@@ -64,7 +64,7 @@ const GameSchema = mongoose.Schema({
 
     minAge : Number,
     publisher : PublisherSchema,
-    review:[reviewSchema],
+    reviews:[reviewSchema],
     designers : [String]
 
 });
