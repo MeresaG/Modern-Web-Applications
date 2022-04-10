@@ -1,0 +1,16 @@
+<form #loginForm="ngForm" (ngSubmit) = "login(loginForm)">
+    <div>
+        <label>Username : </label>
+        <!-- two way binding -->
+        <!-- <input type="text" name="username" placeholder="Your username" [(ngModel)]="credentials.username"> -->
+        <input type="text" name="username" placeholder="Your username" ngModel>
+    </div>
+    <div>
+        <label>Password : </label>
+        <!-- <input type="password" name="password" placeholder="passowrd" [(ngModel)]="credentials.password"> -->
+        <input type="password" name="password" placeholder="passowrd" ngModel>
+    </div>
+    <div>
+        <input type="submit" value="Login">
+    </div>
+</form>
